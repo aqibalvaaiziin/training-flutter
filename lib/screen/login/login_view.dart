@@ -1,10 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:training/preferences/preferences.dart';
+import 'package:training/providers/providers.dart';
+import 'package:training/screen/catalog/catalog.dart';
 import 'package:training/screen/login/login_view_model.dart';
 
 class LoginPageView extends LoginPageViewModel {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  PreferencesData _preferencesData = PreferencesData();
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +123,27 @@ class LoginPageView extends LoginPageViewModel {
             ),
             child: InkWell(
               onTap: () {
-                print("login");
+                Providers.loginUser(email.text, password.text)
+                    .then((value) async {
+                  var jsonObject = jsonDecode(jsonEncode(value.data));
+                  print(jsonObject.toString());
+                  if (jsonObject['error'] == "Email salah") {
+                    Fluttertoast.showToast(
+                        msg: "Email atau password salah",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 2,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  } else {
+                    _preferencesData.setDataToken(jsonObject['token']);
+                    _preferencesData.setDataTokenType(jsonObject['tokenType']);
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => Catalog()),
+                        (Route<dynamic> route) => false);
+                  }
+                });
               },
               child: Center(
                 child: Text(
@@ -159,7 +186,7 @@ class LoginPageView extends LoginPageViewModel {
                     size: 19,
                   ),
                   onPressed: () {
-                    print("Google");
+                    print("google");
                   }),
             ),
           ),
