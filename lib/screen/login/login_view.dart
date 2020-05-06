@@ -1,58 +1,197 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:training/screen/login/login_view_model.dart';
 
 class LoginPageView extends LoginPageViewModel {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    var data = [
-      1,
-      3,
-      5,
-      23,
-      523,
-      25,
-      22,
-      35,
-      52,
-      321,
-      4512,
-      1,
-      31241,
-      421,
-      421,
-      421,
-      421
-    ];
-
+    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          IconButton(icon: Icon(Icons.photo), onPressed: null),
-          IconButton(icon: Icon(Icons.person_pin_circle), onPressed: null)
-        ],
-      ),
-      appBar: AppBar(),
       body: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 1.5,
-          child: Container(
-          margin: EdgeInsets.only(bottom: 350),
-            child: ListView.separated(
-              padding: EdgeInsets.only(bottom: 300),
-              itemCount: data.length,
-              separatorBuilder: (context, index) {
-                return Divider(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              width: screenSize.width,
+              height: screenSize.height,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/images/bgLogin.jpg"),
+                    fit: BoxFit.fitHeight),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                width: screenSize.width,
+                height: screenSize.height * 0.17,
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(color: Color(0xffaada6a7), blurRadius: 150)
+                ]),
+              ),
+            ),
+            Positioned(
+              bottom: 40,
+              right: 19,
+              left: 19,
+              child: inputLogin(context),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget inputLogin(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+      width: screenSize.width,
+      height: screenSize.height * 0.38,
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(height: 15),
+          Container(
+            width: screenSize.width,
+            height: screenSize.height * 0.06,
+            margin: EdgeInsets.symmetric(horizontal: 25),
+            padding: EdgeInsets.symmetric(vertical: 2),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            child: TextField(
+              controller: email,
+              maxLines: 1,
+              style: TextStyle(fontFamily: "D", fontWeight: FontWeight.w600),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Email",
+                hintStyle: TextStyle(fontSize: 15),
+                prefixIcon: Icon(
+                  Icons.person,
                   color: Colors.grey,
-                );
-              },
-              itemBuilder: (context, i) => ListTile(
-                title: Text(data[i].toString()),
+                ),
               ),
             ),
           ),
-        ),
+          SizedBox(height: 15),
+          Container(
+            width: screenSize.width,
+            height: screenSize.height * 0.06,
+            margin: EdgeInsets.symmetric(horizontal: 25),
+            padding: EdgeInsets.symmetric(vertical: 2),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            child: TextField(
+              controller: password,
+              obscureText: true,
+              maxLines: 1,
+              style: TextStyle(fontFamily: "D", fontWeight: FontWeight.w600),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Password",
+                hintStyle: TextStyle(fontSize: 15),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 15),
+          Container(
+            width: screenSize.width * 0.65,
+            height: screenSize.height * 0.07,
+            decoration: BoxDecoration(
+              color: Color(0xffed4752),
+              borderRadius: BorderRadius.all(
+                Radius.circular(8),
+              ),
+            ),
+            child: InkWell(
+              onTap: () {
+                print("login");
+              },
+              child: Center(
+                child: Text(
+                  "Login",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: "F",
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          buttonConnect(context),
+        ],
+      ),
+    );
+  }
+
+  Widget buttonConnect(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+      width: screenSize.width * 0.6,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            width: screenSize.width * 0.1,
+            height: screenSize.width * 0.1,
+            decoration:
+                BoxDecoration(color: Color(0xffdb4437), shape: BoxShape.circle),
+            child: Center(
+              child: IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.googlePlusG,
+                    color: Colors.white,
+                    size: 19,
+                  ),
+                  onPressed: () {
+                    print("Google");
+                  }),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            "Connect with",
+            style: TextStyle(
+                fontSize: 17, fontFamily: "D", fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Container(
+            width: screenSize.width * 0.1,
+            height: screenSize.width * 0.1,
+            decoration:
+                BoxDecoration(color: Color(0xff3b5998), shape: BoxShape.circle),
+            child: Center(
+              child: IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.facebookF,
+                    color: Colors.white,
+                    size: 19,
+                  ),
+                  onPressed: () {
+                    print("fb");
+                  }),
+            ),
+          ),
+        ],
       ),
     );
   }

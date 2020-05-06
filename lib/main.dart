@@ -31,13 +31,12 @@ class _MyAppState extends State {
     return new Scaffold(
       backgroundColor: Colors.black,
       body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: Image.asset(
-          "assets/images/logo.gif",
-          gaplessPlayback: true,
-          width: 110,
-          height: 100,
+        child: Center(
+          child: Image.asset(
+            "assets/images/logo.gif",
+            width: 240,
+            height: 230,
+          ),
         ),
       ),
     );
