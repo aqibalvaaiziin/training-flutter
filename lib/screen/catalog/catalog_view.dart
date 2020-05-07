@@ -21,7 +21,7 @@ class CatalogView extends CatalogViewModel {
               bottom: 0,
               child: Container(
                 width: screenSize.width,
-                height: screenSize.height * 0.55,
+                height: screenSize.height * 0.53,
                 decoration: BoxDecoration(
                     color: Color(0xfff2f2f2),
                     borderRadius: BorderRadius.only(
@@ -43,15 +43,20 @@ class CatalogView extends CatalogViewModel {
             ),
             Positioned(
               top: 52,
-              right: 30,
+              right: 75,
               child: searchBar(context, search),
+            ),
+            Positioned(
+              top: 52,
+              right: 25,
+              child: cartLength(context, 22),
             ),
             Positioned(
               top: 135,
               child: carouselWidget(context, listCatalog),
             ),
             Positioned(
-                top: 330,
+                top: 413,
                 left: 28,
                 child: Text(
                   "All Item",
@@ -63,15 +68,25 @@ class CatalogView extends CatalogViewModel {
             Positioned(
               left: 10,
               right: 10,
-              top: 360,
+              top: 445,
               child: Container(
                 width: screenSize.width,
                 height: screenSize.height * 0.48,
-                child: ListView.builder(
-                    itemCount: listCatalog.length,
-                    itemBuilder: (context, i) => ListTile(
-                          title: listShoes(listCatalog[i]['nama']),
-                        )),
+                padding: EdgeInsets.only(bottom: 15),
+                child: GridView.builder(
+                  gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  itemCount: listCatalog.length,
+                  itemBuilder: (context, i) => listShoes(
+                    context,
+                    listCatalog[i]['nama'],
+                    listCatalog[i]['tipe'],
+                    listCatalog[i]['gender'],
+                    listCatalog[i]['gambar'],
+                    listCatalog[i]['harga'],
+                  ),
+                ),
               ),
             )
           ],
