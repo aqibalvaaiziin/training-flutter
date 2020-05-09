@@ -15,7 +15,6 @@ abstract class CatalogViewModel extends State<Catalog> {
         setState(() {
           listCatalog.add(rawData[i]);
         });
-        print(listCatalog[i]['nama']);
       }
     });
   }

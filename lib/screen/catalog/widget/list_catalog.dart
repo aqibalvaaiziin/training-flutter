@@ -9,7 +9,7 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
   return GestureDetector(
     onTap: () {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => DetailCatalog()));
+          .push(MaterialPageRoute(builder: (context) => DetailCatalog(name: nama,)));
     },
     child: Container(
       height: screenSize.height * 0.32,
@@ -21,7 +21,7 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
       child: Stack(
         children: <Widget>[
           Positioned(
-            top: 5,
+            top: screenSize.height * 0.006,
             left: 5,
             right: 5,
             child: Container(
@@ -41,7 +41,7 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
             ),
           ),
           Positioned(
-            top: 105,
+            top: screenSize.height * 0.121,
             right: 15,
             left: 15,
             child: Container(
@@ -54,7 +54,7 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
             ),
           ),
           Positioned(
-            top: 135,
+            top: screenSize.height * 0.15,
             right: 15,
             left: 15,
             child: Container(
@@ -77,7 +77,7 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
             ),
           ),
           Positioned(
-            top: 158,
+            top: screenSize.height * 0.1735,
             right: 15,
             left: 15,
             child: Container(
@@ -97,7 +97,9 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
                     child: InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => DetailCatalog()));
+                            builder: (context) => DetailCatalog(
+                                  name: nama,
+                                )));
                       },
                       child: Center(
                           child: Text(

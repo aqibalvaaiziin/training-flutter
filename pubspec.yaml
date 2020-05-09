@@ -98,6 +98,10 @@ flutter:
     - family: "M"
       fonts:
         - asset: assets/fonts/MS.otf
+
+    - family: "FS"
+      fonts:
+        - asset: assets/fonts/FS.ttf
     
     - family: "CB"
       fonts:

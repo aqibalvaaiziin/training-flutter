@@ -78,7 +78,9 @@ carouselWidget(BuildContext context, data) {
                         child: InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => DetailCatalog()));
+                                builder: (context) => DetailCatalog(
+                                      name: data[i]['nama'],
+                                    )));
                           },
                           child: Center(
                             child: Text(

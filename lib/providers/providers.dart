@@ -17,6 +17,10 @@ class Providers {
     return dio.get("$url/sepatu/group/bestseller");
   }
 
+  static Future getShoesByName(String name) async {
+    return dio.get("$url/sepatu/group/name/$name");
+  }
+
   static Future getListCart() async {
     String token = await _preferencesData.getDataToken();
     String type = await _preferencesData.getDataTokenType();
