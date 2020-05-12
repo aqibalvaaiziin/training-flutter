@@ -59,7 +59,7 @@ carouselWidget(BuildContext context, data) {
                             letterSpacing: 0.7),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: screenSize.height * 0.001,
                       ),
                       Container(
                         width: screenSize.width * 0.36,

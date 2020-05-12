@@ -40,17 +40,17 @@ class CatalogView extends CatalogViewModel {
                     ),
                     Positioned(
                       top: screenSize.height * 0.08,
-                      left: 30,
+                      left: screenSize.width * 0.04,
                       child: logoImage(context),
                     ),
                     Positioned(
                       top: screenSize.height * 0.1,
-                      right: 75,
+                      right: screenSize.width * 0.2,
                       child: searchBar(context, search),
                     ),
                     Positioned(
                       top: screenSize.height * 0.1,
-                      right: 25,
+                      right: screenSize.width * 0.07,
                       child: cartLength(context, 22),
                     ),
                     Positioned(
@@ -59,18 +59,18 @@ class CatalogView extends CatalogViewModel {
                     ),
                     Positioned(
                       top: screenSize.height * 0.35,
-                      right: 40,
-                      left: 40,
+                      right: screenSize.width * 0.1,
+                      left: screenSize.width * 0.1,
                       child: iconCategory(context),
                     ),
                     Positioned(
                         top: screenSize.height * 0.45,
-                        left: 28,
-                        right: 28,
+                        left: screenSize.width * 0.06,
+                        right: screenSize.width * 0.06,
                         child: filterButton(context)),
                     Positioned(
-                      left: 10,
-                      right: 10,
+                      left: screenSize.width * 0.02,
+                      right: screenSize.width * 0.02,
                       top: screenSize.height * 0.49,
                       child: Container(
                         width: screenSize.width,

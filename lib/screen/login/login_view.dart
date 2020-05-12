@@ -126,7 +126,6 @@ class LoginPageView extends LoginPageViewModel {
                 Providers.loginUser(email.text, password.text)
                     .then((value) async {
                   var jsonObject = jsonDecode(jsonEncode(value.data));
-                  print(jsonObject.toString());
                   if (jsonObject['error'] == "Email salah") {
                     Fluttertoast.showToast(
                         msg: "Email atau password salah",

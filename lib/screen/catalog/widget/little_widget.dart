@@ -5,7 +5,7 @@ searchBar(BuildContext context, TextEditingController data) {
   var screenSize = MediaQuery.of(context).size;
   return Container(
     width: screenSize.width * 0.4,
-    height: 40,
+    height: screenSize.height * 0.05,
     padding: EdgeInsets.symmetric(vertical: 2),
     decoration: BoxDecoration(
         color: Colors.white,
@@ -28,9 +28,10 @@ searchBar(BuildContext context, TextEditingController data) {
 }
 
 logoImage(BuildContext context) {
+  var screenSize = MediaQuery.of(context).size;
   return Container(
-    width: 80,
-    height: 80,
+    width: screenSize.width * 0.21,
+    height: screenSize.width * 0.21,
     child: Image(
       image: AssetImage("assets/images/logo.png"),
     ),
@@ -56,7 +57,7 @@ iconCategory(BuildContext context) {
                   onPressed: () {}),
             ),
             SizedBox(
-              height: 5,
+              height: screenSize.height * 0.007,
             ),
             Text(
               "T-Shirt",
@@ -78,7 +79,7 @@ iconCategory(BuildContext context) {
                   onPressed: () {}),
             ),
             SizedBox(
-              height: 5,
+              height: screenSize.height * 0.007,
             ),
             Text(
               "Volley Ball",
@@ -100,7 +101,7 @@ iconCategory(BuildContext context) {
                   onPressed: () {}),
             ),
             SizedBox(
-              height: 5,
+              height: screenSize.height * 0.007,
             ),
             Text(
               "Shirt",
@@ -122,7 +123,7 @@ iconCategory(BuildContext context) {
                   onPressed: () {}),
             ),
             SizedBox(
-              height: 5,
+              height: screenSize.height * 0.007,
             ),
             Text(
               "Football",

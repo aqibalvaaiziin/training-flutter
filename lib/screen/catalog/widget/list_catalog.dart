@@ -22,8 +22,8 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
         children: <Widget>[
           Positioned(
             top: screenSize.height * 0.006,
-            left: 5,
-            right: 5,
+            left: screenSize.width * 0.0125,
+            right: screenSize.width * 0.0125,
             child: Container(
               height: screenSize.height * 0.14,
               decoration: BoxDecoration(
@@ -42,8 +42,8 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
           ),
           Positioned(
             top: screenSize.height * 0.121,
-            right: 15,
-            left: 15,
+            right: screenSize.width * 0.03,
+            left: screenSize.width * 0.03,
             child: Container(
               width: screenSize.width,
               child: Text(
@@ -55,8 +55,8 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
           ),
           Positioned(
             top: screenSize.height * 0.15,
-            right: 15,
-            left: 15,
+            right: screenSize.width * 0.035,
+            left: screenSize.width * 0.035,
             child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,8 +78,8 @@ listShoes(BuildContext context, String nama, String tipe, String gender,
           ),
           Positioned(
             top: screenSize.height * 0.1735,
-            right: 15,
-            left: 15,
+            right: screenSize.width * 0.035,
+            left: screenSize.width * 0.035,
             child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

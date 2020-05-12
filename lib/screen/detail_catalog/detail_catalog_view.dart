@@ -4,6 +4,8 @@ import 'package:training/widget/shopping_cart.dart';
 import './detail_catalog_view_model.dart';
 
 class DetailCatalogView extends DetailCatalogViewModel {
+  var selectedIndex;
+  int idData = 0;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -20,8 +22,8 @@ class DetailCatalogView extends DetailCatalogViewModel {
                     ),
                     Positioned(
                       bottom: 0,
-                      left: 22,
-                      right: 22,
+                      left: screenSize.width * 0.06,
+                      right: screenSize.width * 0.06,
                       child: Container(
                         width: screenSize.width,
                         height: screenSize.height * 0.485,
@@ -35,88 +37,82 @@ class DetailCatalogView extends DetailCatalogViewModel {
                       ),
                     ),
                     Positioned(
-                      right: 0,
-                      top: screenSize.height * 0.415,
-                      child: Container(
-                        width: screenSize.width * 0.82,
-                        height: screenSize.width * 0.1,
-                        decoration: BoxDecoration(boxShadow: [
-                          BoxShadow(
-                            color: Color(0xff808080),
-                            blurRadius: 25,
-                          ),
-                        ]),
-                      ),
-                    ),
-                    Positioned(
-                      top: screenSize.height * 0.06,
-                      left: 15,
-                      child: buttonBack(context),
-                    ),
-                    Positioned(
-                      top: screenSize.height * 0.07,
-                      right: 15,
-                      child: cartLength(context, 10),
-                    ),
-                    Positioned(
-                      top: screenSize.height * 0.01,
+                      top: screenSize.height * 0.002,
                       right: -screenSize.width * 0.42,
-                      child: bigImageShoes(shoesData[0]['gambar']),
+                      child: bigImageShoes(context, shoesData[0]['gambar']),
                     ),
                     Positioned(
                       top: screenSize.height * 0.56,
-                      right: 15,
-                      left: 15,
+                      right: screenSize.width * 0.06,
+                      left: screenSize.width * 0.06,
                       child: Center(child: shoesName(shoesData[0]['nama'])),
                     ),
                     Positioned(
                       top: screenSize.height * 0.59,
-                      right: 15,
-                      left: 15,
+                      right: screenSize.width * 0.06,
+                      left: screenSize.width * 0.06,
                       child: Center(
                           child: shoesPrice(shoesData[0]['harga'].toString())),
                     ),
                     Positioned(
                       top: screenSize.height * 0.649,
-                      right: 25,
-                      left: 25,
+                      right: screenSize.width * 0.08,
+                      left: screenSize.width * 0.08,
                       child: Container(
                         width: screenSize.width,
                         height: screenSize.height * 0.08,
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        child: Center(
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: shoesData.length,
-                              itemBuilder: (context, i) =>
-                                  listSizeItem(context, shoesData[i]['ukuran'])),
-                        ),
+                        margin: EdgeInsets.symmetric(horizontal: 88.5),
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: shoesData.length,
+                            itemBuilder: (context, i) => GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedIndex = i;
+                                      idData = shoesData[i]['id_sepatu'];
+                                    });
+                                  },
+                                  child: listSizeItem(
+                                      context,
+                                      shoesData[i]['ukuran'],
+                                      selectedIndex == i),
+                                )),
                       ),
                     ),
                     Positioned(
                       top: screenSize.height * 0.74,
-                      right: 15,
-                      left: 15,
+                      right: screenSize.width * 0.06,
+                      left: screenSize.width * 0.06,
                       child:
                           Center(child: shoesDesc(shoesData[0]['deskripsi'])),
                     ),
                     Positioned(
-                      top: screenSize.height * 0.82,
-                      right: 15,
-                      left: 15,
+                      top: screenSize.height * 0.825,
+                      right: screenSize.width * 0.06,
+                      left: screenSize.width * 0.06,
                       child: Center(child: shoesType(shoesData[0]['tipe'])),
                     ),
                     Positioned(
-                      top: screenSize.height * 0.855,
-                      right: 15,
-                      left: 15,
+                      top: screenSize.height * 0.865,
+                      right: screenSize.width * 0.06,
+                      left: screenSize.width * 0.06,
                       child: Center(child: shoesGender(shoesData[0]['gender'])),
                     ),
                     Positioned(
                       top: screenSize.height * 0.88,
-                      right: 15,
-                      left: 15,
-                      child: Center(child: cartButton(context)),
+                      right: screenSize.width * 0.06,
+                      left: screenSize.width * 0.06,
+                      child: Center(child: cartButton(context, idData)),
+                    ),
+                    Positioned(
+                      top: screenSize.height * 0.06,
+                      left: screenSize.width * 0.06,
+                      child: buttonBack(context),
+                    ),
+                    Positioned(
+                      top: screenSize.height * 0.065,
+                      right: screenSize.width * 0.06,
+                      child: cartLengthDetail(context, 10),
                     ),
                   ],
                 ),
