@@ -28,7 +28,6 @@ abstract class CartPageViewModel extends State<CartPage> {
         total += dataList[i]['jumlah'] * dataList[i]['Sepatu']['harga'];
       });
     }
-    print("Data : $total");
     return total;
   }
 
@@ -36,8 +35,8 @@ abstract class CartPageViewModel extends State<CartPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await initCarts();
       store = StoreProvider.of<AppState>(context);
+      await initCarts();
     });
   }
 }

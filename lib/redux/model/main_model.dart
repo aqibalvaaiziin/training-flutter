@@ -7,7 +7,10 @@ class MainState {
   MainState({@required this.carts, @required this.total});
 
   factory MainState.initial() {
-    return MainState(carts: [], total: 0);
+    return MainState(
+      carts: [],
+      total: 0,
+    );
   }
 
   MainState copyWith({List carts, int total}) {
@@ -22,8 +25,9 @@ class MainState {
       identical(this, other) ||
       other is MainState &&
           runtimeType == other.runtimeType &&
-          carts == other.carts;
+          carts == other.carts &&
+          total == other.total;
 
   @override
-  int get hashCode => carts.hashCode;
+  int get hashCode => carts.hashCode ^ total.hashCode;
 }
