@@ -7,17 +7,11 @@ import 'package:training/screen/cart_page/widget/little_widget.dart';
 import './cart_page_view_model.dart';
 
 class CartPageView extends CartPageViewModel {
-  int total = 0;
-
-  int totalAll(int a, int b) {
-    return total += a * b;
-  }
-
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return StoreConnector<AppState, MainState>(
-      converter: (store) => store.state.mainState, 
+      converter: (store) => store.state.mainState,
       builder: (context, state) {
         return StoreConnector<AppState, MainState>(
           converter: (store) => store.state.mainState,
@@ -75,18 +69,17 @@ class CartPageView extends CartPageViewModel {
                                 child: ListView.builder(
                                     itemCount: state.carts.length,
                                     itemBuilder: (context, i) {
-                                      totalAll(
-                                        state.carts[i]['Sepatu']['harga'],
-                                        state.carts[i]['jumlah'],
-                                      );
-                                      return listCart(
-                                        context,
-                                        state.carts[i]['Sepatu']['nama'],
-                                        state.carts[i]['Sepatu']['ukuran'],
-                                        state.carts[i]['Sepatu']['tipe'],
-                                        state.carts[i]['Sepatu']['harga'],
-                                        state.carts[i]['jumlah'],
-                                        state.carts[i]['Sepatu']['gambar'],
+                                      return ListCart(
+                                        id: state.carts[i]['id_sepatu'],
+                                        name: state.carts[i]['Sepatu']['nama'],
+                                        size: state.carts[i]['Sepatu']
+                                            ['ukuran'],
+                                        type: state.carts[i]['Sepatu']['tipe'],
+                                        price: state.carts[i]['Sepatu']
+                                            ['harga'],
+                                        qty: state.carts[i]['jumlah'],
+                                        image: state.carts[i]['Sepatu']
+                                            ['gambar'],
                                       );
                                     }),
                               ),
@@ -95,7 +88,7 @@ class CartPageView extends CartPageViewModel {
                               bottom: screenSize.height * 0.11,
                               left: screenSize.width * 0.07,
                               right: screenSize.width * 0.07,
-                              child: totalText(context, total),
+                              child: totalText(context, state.total),
                             ),
                             Positioned(
                               bottom: screenSize.height * 0.02,

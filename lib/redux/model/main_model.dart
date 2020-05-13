@@ -3,15 +3,18 @@ import 'package:meta/meta.dart';
 @immutable
 class MainState {
   final List carts;
-
-  MainState({@required this.carts});
+  final int total;
+  MainState({@required this.carts, @required this.total});
 
   factory MainState.initial() {
-    return MainState(carts: []);
+    return MainState(carts: [], total: 0);
   }
 
-  MainState copyWith({List carts}) {
-    return MainState(carts: carts ?? this.carts);
+  MainState copyWith({List carts, int total}) {
+    return MainState(
+      carts: carts ?? this.carts,
+      total: total ?? this.total,
+    );
   }
 
   @override

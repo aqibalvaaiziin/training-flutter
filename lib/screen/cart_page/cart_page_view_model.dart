@@ -12,15 +12,24 @@ abstract class CartPageViewModel extends State<CartPage> {
   Store<AppState> store;
 
   Future initCarts() async {
-    Providers.getListCart().then((value) {
+    Providers.getListCart().then((value) async {
+      List dataList = jsonDecode(jsonEncode(value.data));
       store.dispatch(
-        SetCart(
-          carts: List.from(
-            jsonDecode(jsonEncode(value.data)),
-          ),
-        ),
+        SetCart(carts: List.from(dataList)),
       );
+      store.dispatch(SetTotal(total: await getTotal(dataList)));
     }).catchError((err) => print(err.toString()));
+  }
+
+  Future<int> getTotal(dataList) async {
+    int total = 0;
+    for (var i = 0; i < store.state.mainState.carts.length; i++) {
+      setState(() {
+        total += dataList[i]['jumlah'] * dataList[i]['Sepatu']['harga'];
+      });
+    }
+    print("Data : $total");
+    return total;
   }
 
   @override

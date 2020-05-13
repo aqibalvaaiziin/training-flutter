@@ -34,7 +34,7 @@ checkoutButton(BuildContext context) {
         child: Text(
           "CONFIRM ORDER",
           style: TextStyle(
-            fontSize: 15,
+            fontSize: 13,
             fontFamily: "F",
             color: Colors.white,
           ),
