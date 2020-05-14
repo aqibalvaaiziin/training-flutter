@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-textOrder(BuildContext context) {
+textOrder(BuildContext context, int data) {
   var screenSize = MediaQuery.of(context).size;
   return Container(
     width: screenSize.width,
@@ -13,7 +13,7 @@ textOrder(BuildContext context) {
           style: TextStyle(fontSize: 26, fontFamily: "F", color: Colors.white),
         ),
         Text(
-          "3 Items",
+          data.toString() + " Items",
           style: TextStyle(fontSize: 13, fontFamily: "AD", color: Colors.white),
         ),
       ],
@@ -30,6 +30,7 @@ checkoutButton(BuildContext context) {
         color: Color(0xffff8c04),
         borderRadius: BorderRadius.all(Radius.circular(30))),
     child: InkWell(
+      onTap: () {},
       child: Center(
         child: Text(
           "CONFIRM ORDER",
@@ -53,12 +54,13 @@ totalText(BuildContext context, int total) {
       children: <Widget>[
         Text(
           "Total",
-          style: TextStyle(color: Colors.white,fontFamily: "CB",fontSize: 20),
+          style: TextStyle(color: Colors.white, fontFamily: "CB", fontSize: 20),
         ),
         Container(
-          child: Text("Rp. "+
-            total.toString(),
-            style: TextStyle(color: Colors.white,fontFamily: "CB",fontSize: 20),
+          child: Text(
+            "Rp. " + total.toString(),
+            style:
+                TextStyle(color: Colors.white, fontFamily: "CB", fontSize: 20),
           ),
         ),
       ],

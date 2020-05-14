@@ -57,7 +57,7 @@ class CartPageView extends CartPageViewModel {
                               top: screenSize.height * 0.21,
                               left: screenSize.width * 0.085,
                               right: screenSize.width * 0.085,
-                              child: textOrder(context),
+                              child: textOrder(context, state.carts.length),
                             ),
                             Positioned(
                               top: screenSize.height * 0.27,
