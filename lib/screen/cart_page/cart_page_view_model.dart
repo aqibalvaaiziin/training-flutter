@@ -6,6 +6,7 @@ import 'package:redux/redux.dart';
 import 'package:training/providers/providers.dart';
 import 'package:training/redux/action/main_action.dart';
 import 'package:training/redux/model/app_model.dart';
+import 'package:training/screen/detail_catalog/widget/little_widget.dart';
 import './cart_page.dart';
 
 abstract class CartPageViewModel extends State<CartPage> {
@@ -29,6 +30,14 @@ abstract class CartPageViewModel extends State<CartPage> {
       });
     }
     return total;
+  }
+
+  void removeData(data) {
+    Providers.removeDataCart(data).then((_) async {
+      message("Data Dihapus");
+      await initCarts();
+      setState(() {});
+    });
   }
 
   @override

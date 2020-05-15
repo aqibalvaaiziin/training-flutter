@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training/screen/retail/retail.dart';
 
 textOrder(BuildContext context, int data) {
   var screenSize = MediaQuery.of(context).size;
@@ -30,7 +31,11 @@ checkoutButton(BuildContext context) {
         color: Color(0xffff8c04),
         borderRadius: BorderRadius.all(Radius.circular(30))),
     child: InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => Retail()),
+        );
+      },
       child: Center(
         child: Text(
           "CONFIRM ORDER",

@@ -6,6 +6,7 @@ import 'package:redux/redux.dart';
 import 'package:training/providers/providers.dart';
 import 'package:training/redux/action/main_action.dart';
 import 'package:training/redux/model/app_model.dart';
+import 'package:training/screen/detail_catalog/widget/little_widget.dart';
 import './detail_catalog.dart';
 
 abstract class DetailCatalogViewModel extends State<DetailCatalog> {
@@ -41,6 +42,13 @@ abstract class DetailCatalogViewModel extends State<DetailCatalog> {
       });
     }
     return total;
+  }
+
+  void addDataToCart(data) {
+    Providers.postDataToList(data, 1).then((_) async {
+      await initCarts();
+      await message("DATA DITAMBAHKAN KE KERANJANG");
+    });
   }
 
   @override

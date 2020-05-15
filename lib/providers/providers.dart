@@ -51,4 +51,8 @@ class Providers {
     dio.options.headers['Authorization'] = "$type $token";
     return dio.delete("$url/transaksi/");
   }
+
+  static Future getListRetail() async{
+    return dio.get("$url/retail");
+  }
 }

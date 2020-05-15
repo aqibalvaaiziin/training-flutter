@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:training/providers/providers.dart';
 import 'package:training/screen/catalog/catalog.dart';
 
 buttonBack(BuildContext context) {
@@ -20,7 +19,6 @@ buttonBack(BuildContext context) {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => Catalog()),
               (Route<dynamic> route) => false);
-          print("dsadas");
         }),
   );
 }
@@ -81,39 +79,6 @@ shoesGender(gender) {
   );
 }
 
-cartButton(BuildContext context, data) {
-  var screenSize = MediaQuery.of(context).size;
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 15),
-    width: screenSize.width * 0.7,
-    height: screenSize.height * 0.065,
-    decoration: BoxDecoration(
-        color: Colors.red,
-        gradient: LinearGradient(
-          colors: [
-            Color(0xffc31ce8),
-            Color(0xff8710e3),
-            Color(0xff7227e3),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(30))),
-    child: InkWell(
-      onTap: () {
-        Providers.postDataToList(data, 1).then((_) {
-          message("DATA DITAMBAHKAN KE KERANJANG");
-        });
-      },
-      child: Center(
-        child: Text(
-          "Add To Cart",
-          style: TextStyle(color: Colors.white, fontFamily: "F", fontSize: 15),
-        ),
-      ),
-    ),
-  );
-}
 
 listSizeItem(BuildContext context, int data, bool selected) {
   var screenSize = MediaQuery.of(context).size;

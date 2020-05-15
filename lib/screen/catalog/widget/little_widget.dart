@@ -153,7 +153,6 @@ filterButton(BuildContext context) {
         ),
         GestureDetector(
           onTap: () {
-            print("filyerrrt");
           },
           child: Container(
             padding: EdgeInsets.all(8),

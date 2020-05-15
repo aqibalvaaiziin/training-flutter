@@ -110,8 +110,7 @@ class DetailCatalogView extends DetailCatalogViewModel {
                           top: screenSize.height * 0.88,
                           right: screenSize.width * 0.06,
                           left: screenSize.width * 0.06,
-                          child: Center(
-                              child: cartButton(context, idData)),
+                          child: Center(child: cartButton(context, idData)),
                         ),
                         Positioned(
                           top: screenSize.height * 0.06,
@@ -136,6 +135,39 @@ class DetailCatalogView extends DetailCatalogViewModel {
                 ),
               ),
             ),
+    );
+  }
+
+  cartButton(BuildContext context, data) {
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 15),
+      width: screenSize.width * 0.7,
+      height: screenSize.height * 0.065,
+      decoration: BoxDecoration(
+          color: Colors.red,
+          gradient: LinearGradient(
+            colors: [
+              Color(0xffc31ce8),
+              Color(0xff8710e3),
+              Color(0xff7227e3),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(30))),
+      child: InkWell(
+        onTap: () {
+          addDataToCart(data);
+        },
+        child: Center(
+          child: Text(
+            "Add To Cart",
+            style:
+                TextStyle(color: Colors.white, fontFamily: "F", fontSize: 15),
+          ),
+        ),
+      ),
     );
   }
 }
