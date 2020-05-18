@@ -10,8 +10,11 @@ import './catalog.dart';
 
 abstract class CatalogViewModel extends State<Catalog> {
   List listCatalog = [];
+  List temp = [];
   TextEditingController search = TextEditingController();
   Store<AppState> store;
+  double sliderValue = 0.0;
+  String info = "";
 
   Future initCarts() async {
     Providers.getListCart().then((value) async {
@@ -39,9 +42,46 @@ abstract class CatalogViewModel extends State<Catalog> {
       for (var i = 0; i < rawData.length; i++) {
         setState(() {
           listCatalog.add(rawData[i]);
+          temp.add(rawData[i]);
         });
       }
     });
+  }
+
+  void onSliderChanged(data) async {
+    List searchResult = List();
+    searchResult.addAll(temp);
+    if (data != null) {
+      List dummy = List();
+      for (var i = 0; i < searchResult.length; i++) {
+        if (data <= 1000000 &&
+            data <= searchResult[i]['harga'] &&
+            searchResult[i]['harga'] <= 1000000) {
+          info = "< Rp. 1.000.000";
+          dummy.add(searchResult[i]);
+        } else if (data <= 3000000 &&
+            data <= searchResult[i]['harga'] &&
+            searchResult[i]['harga'] <= 3000000) {
+          info = "< Rp. 3.000.000";
+          dummy.add(searchResult[i]);
+        } else if (data >= 3000001 &&
+            data >= searchResult[i]['harga'] &&
+            searchResult[i]['harga'] <= 10000000) {
+          info = "> Rp. 3.000.001";
+          dummy.add(searchResult[i]);
+        }
+      }
+      setState(() {
+        listCatalog.clear();
+        listCatalog.addAll(dummy);
+      });
+      return;
+    } else {
+      setState(() {
+        listCatalog.clear();
+        getCatalog();
+      });
+    }
   }
 
   @override

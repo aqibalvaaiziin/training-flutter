@@ -112,4 +112,88 @@ class CatalogView extends CatalogViewModel {
             ),
     );
   }
+
+  filterButton(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+      width: screenSize.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            "All Item",
+            style: TextStyle(
+              fontFamily: "F",
+              fontSize: 20,
+            ),
+          ),
+          GestureDetector(
+            onTap: () => bottomModal(context),
+            child: Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.filter_list,
+                    size: 15,
+                  ),
+                  SizedBox(),
+                  Text(
+                    "Filter",
+                    style: TextStyle(
+                        fontFamily: "F", fontSize: 13, letterSpacing: 0.4),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  bottomModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Masukkan Range Harga",
+                  style: TextStyle(fontFamily: "CB", fontSize: 20),
+                ),
+                Container(
+                  child: Slider(
+                      value: sliderValue,
+                      min: 0,
+                      max: 5000000,
+                      divisions: 3,
+                      label: info,
+                      onChanged: (val) {
+                        setState(() {
+                          sliderValue = val;
+                          onSliderChanged(sliderValue);
+                          Navigator.of(context).pop();
+                          bottomModal(context);
+                        });
+                      }),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  info,
+                  style: TextStyle(fontSize: 16, fontFamily: "F"),
+                ),
+              ],
+            ),
+          );
+        });
+  }
 }
