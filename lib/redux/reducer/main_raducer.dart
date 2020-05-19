@@ -10,6 +10,10 @@ MainState _setMainState(MainState state, action) {
     return state.copyWith(carts: action.carts);
   } else if (action is SetTotal) {
     return state.copyWith(total: action.total);
+  } else if (action is SetCatalog) {
+    return state.copyWith(catalogs: action.catalogs);
+  } else if (action is SetSliderValue) {
+    return state.copyWith(sliderValue: action.sliderValue);
   }
   return state;
 }
